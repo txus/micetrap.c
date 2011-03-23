@@ -1,0 +1,10 @@
+AC_INIT(src/main.c)
+
+PACKAGE=micetrap
+VERSION=0.0.1
+
+AM_INIT_AUTOMAKE($PACKAGE, $VERSION)
+
+AC_PROG_LIBTOOL
+
+AC_OUTPUT(Makefile src/Makefile)
