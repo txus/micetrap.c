@@ -34,7 +34,7 @@ host_triplet = @host@
 subdir = .
 DIST_COMMON = README $(am__configure_deps) $(srcdir)/Makefile.am \
 	$(srcdir)/Makefile.in $(top_srcdir)/configure AUTHORS COPYING \
-	ChangeLog INSTALL NEWS config.guess config.sub depcomp \
+	ChangeLog INSTALL NEWS compile config.guess config.sub depcomp \
 	install-sh ltmain.sh missing
 ACLOCAL_M4 = $(top_srcdir)/aclocal.m4
 am__aclocal_m4_deps = $(top_srcdir)/configure.ac
@@ -79,6 +79,8 @@ AWK = @AWK@
 CC = @CC@
 CCDEPMODE = @CCDEPMODE@
 CFLAGS = @CFLAGS@
+CHECK_CFLAGS = @CHECK_CFLAGS@
+CHECK_LIBS = @CHECK_LIBS@
 CPP = @CPP@
 CPPFLAGS = @CPPFLAGS@
 CYGPATH_W = @CYGPATH_W@
@@ -120,6 +122,9 @@ PACKAGE_STRING = @PACKAGE_STRING@
 PACKAGE_TARNAME = @PACKAGE_TARNAME@
 PACKAGE_VERSION = @PACKAGE_VERSION@
 PATH_SEPARATOR = @PATH_SEPARATOR@
+PKG_CONFIG = @PKG_CONFIG@
+PKG_CONFIG_LIBDIR = @PKG_CONFIG_LIBDIR@
+PKG_CONFIG_PATH = @PKG_CONFIG_PATH@
 RANLIB = @RANLIB@
 SED = @SED@
 SET_MAKE = @SET_MAKE@
@@ -177,7 +182,10 @@ sysconfdir = @sysconfdir@
 target_alias = @target_alias@
 top_builddir = @top_builddir@
 top_srcdir = @top_srcdir@
-SUBDIRS = src
+
+# ACLOCAL_AMFLAGS = -I m4
+# 
+SUBDIRS = src . tests
 all: all-recursive
 
 .SUFFIXES:
@@ -603,6 +611,18 @@ uninstall-am:
 	mostlyclean-libtool pdf pdf-am ps ps-am tags tags-recursive \
 	uninstall uninstall-am
 
+# 
+# INCLUDES                    = @CHECK_CFLAGS@
+# 
+# TESTS                       = check_micetrap
+# 
+# noinst_PROGRAMS             = $(TESTS)
+# check_micetrap_SOURCES      = check_micetrap.c
+# check_micetrap_LDADD        = @CHECK_LIBS@ check_hello.o
+# CLEANFILES                  = check_micetrap.log
+# 
+# check_%.o : $(srcdir)/%.c
+# 	$(COMPILE) -DCHECKING -c -o $@ $^
 # Tell versions [3.59,3.63) of GNU make to not export all variables.
 # Otherwise a system limit (for SysV at least) may be exceeded.
 .NOEXPORT:

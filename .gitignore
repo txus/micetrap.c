@@ -5,3 +5,4 @@ src/.deps/*
 src/micetrap
 config.log
 config.status
+.deps/*
