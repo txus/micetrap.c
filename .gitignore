@@ -6,3 +6,4 @@ src/micetrap
 config.log
 config.status
 .deps/*
+tests/check_micetrap

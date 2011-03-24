@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include <getopt.h>
 #include <unistd.h>
 #include <stdlib.h>
 #include <string.h>
@@ -12,12 +13,114 @@
 
 #define BUFSIZE 1024
 
+const char* program_name = "micetrap";
+const char* program_version = "0.0.1";
+
 void error(char *msg) {
   perror(msg);
   exit(1);
 }
 
+void show_banner() {
+  printf("Usage:\n\t\t[sudo] %s <service> [options]", program_name);
+  printf("\n\t\t\t-p --port\t[PORT]\t\tA specific port to use\n");
+}
+
+void show_version() {
+  printf("%s-%s", program_name, program_version);
+}
+
+void
+populate_service_and_port_from_options(char *service, int *port, int argc, char* argv[])
+{
+
+  int next_option;
+
+  const char* const short_options = "hpv:";
+  const struct option long_options[] =
+    {
+      { "help",     0,  NULL,   'h' },
+      { "version",  0,  NULL,   'v' },
+      { "port",     1,  NULL,   'p' },
+      { "service",  1,  NULL,   's' },
+      { NULL,       0,  NULL,   0   },
+    };
+
+  char*        service_name = NULL;
+  unsigned int port_number  = NULL;
+
+  if (argc == 1)
+  {
+    show_banner();
+    exit(EXIT_SUCCESS);
+  }
+
+  while(1)
+  {
+
+    next_option = getopt_long (argc, argv, short_options, long_options, NULL);
+
+    if (next_option == -1)
+    {
+      break;
+    }
+
+    switch(next_option)
+    {
+      case 'h' :
+        show_banner();
+        exit(EXIT_SUCCESS);
+
+      case 'v' :
+        show_version();
+        exit(EXIT_SUCCESS);
+
+      case 'p' :
+        printf("Given a port argument: %s\n", optarg);
+        port_number = (int)optarg;
+        break;
+
+      case 's' :
+        printf("Given a service argument: %s\n", optarg);
+        service_name = (char*)optarg;
+        break;
+
+      case -1 :
+        break;
+
+      default :
+        abort();
+    }
+  
+  }
+
+  if (optind < argc)
+  {
+    printf("Unrecognized options:\n");
+    while (optind < argc)
+      printf("\t\t%s\n", argv[optind++]);
+  }
+
+  if (service_name == NULL)
+  {
+    printf("You must provide a valid service name.");
+    exit(-1);
+  }
+
+  service = service_name;
+  port = port_number;
+  printf("After Service: %s\nPort: %i", service, port);
+}
+
 int main(int argc, char **argv) {
+
+  char*        service = NULL;
+  unsigned int port    = NULL;
+
+  populate_service_and_port_from_options(&service, &port, argc, argv);
+
+  printf("Service: %s\nPort: %i", service, port);
+
   int parentfd; /* parent socket */
   int childfd; /* child socket */
   int portno; /* port to listen on */

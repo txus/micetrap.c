@@ -69,18 +69,18 @@ DIST_ARCHIVES = $(distdir).tar.gz
 GZIP_ENV = --best
 distuninstallcheck_listfiles = find . -type f -print
 distcleancheck_listfiles = find . -type f -print
-ACLOCAL = ${SHELL} /Users/txus/Code/micetrap/missing --run aclocal-1.10
-AMTAR = ${SHELL} /Users/txus/Code/micetrap/missing --run tar
+ACLOCAL = ${SHELL} /Users/txus/Code/micetrap-rewrite/missing --run aclocal-1.10
+AMTAR = ${SHELL} /Users/txus/Code/micetrap-rewrite/missing --run tar
 AR = ar
-AUTOCONF = ${SHELL} /Users/txus/Code/micetrap/missing --run autoconf
-AUTOHEADER = ${SHELL} /Users/txus/Code/micetrap/missing --run autoheader
-AUTOMAKE = ${SHELL} /Users/txus/Code/micetrap/missing --run automake-1.10
+AUTOCONF = ${SHELL} /Users/txus/Code/micetrap-rewrite/missing --run autoconf
+AUTOHEADER = ${SHELL} /Users/txus/Code/micetrap-rewrite/missing --run autoheader
+AUTOMAKE = ${SHELL} /Users/txus/Code/micetrap-rewrite/missing --run automake-1.10
 AWK = awk
 CC = gcc
 CCDEPMODE = depmode=gcc3
 CFLAGS = -g -O2
-CHECK_CFLAGS = -I/usr/local/include  
-CHECK_LIBS = -L/usr/local/lib -lcheck  
+CHECK_CFLAGS = -I/usr/local/Cellar/check/0.9.8/include  
+CHECK_LIBS = -L/usr/local/Cellar/check/0.9.8/lib -lcheck  
 CPP = gcc -E
 CPPFLAGS = 
 CYGPATH_W = echo
@@ -108,7 +108,7 @@ LIBTOOL = $(SHELL) $(top_builddir)/libtool
 LIPO = lipo
 LN_S = ln -s
 LTLIBOBJS = 
-MAKEINFO = ${SHELL} /Users/txus/Code/micetrap/missing --run makeinfo
+MAKEINFO = ${SHELL} /Users/txus/Code/micetrap-rewrite/missing --run makeinfo
 MKDIR_P = ./install-sh -c -d
 NM = /usr/bin/nm
 NMEDIT = nmedit
@@ -131,10 +131,10 @@ SET_MAKE =
 SHELL = /bin/sh
 STRIP = strip
 VERSION = 0.0.1
-abs_builddir = /Users/txus/Code/micetrap
-abs_srcdir = /Users/txus/Code/micetrap
-abs_top_builddir = /Users/txus/Code/micetrap
-abs_top_srcdir = /Users/txus/Code/micetrap
+abs_builddir = /Users/txus/Code/micetrap-rewrite
+abs_srcdir = /Users/txus/Code/micetrap-rewrite
+abs_top_builddir = /Users/txus/Code/micetrap-rewrite
+abs_top_srcdir = /Users/txus/Code/micetrap-rewrite
 ac_ct_CC = gcc
 ac_ct_DUMPBIN = 
 am__include = include
@@ -162,7 +162,7 @@ host_vendor = apple
 htmldir = ${docdir}
 includedir = ${prefix}/include
 infodir = ${datarootdir}/info
-install_sh = $(SHELL) /Users/txus/Code/micetrap/install-sh
+install_sh = $(SHELL) /Users/txus/Code/micetrap-rewrite/install-sh
 libdir = ${exec_prefix}/lib
 libexecdir = ${exec_prefix}/libexec
 localedir = ${datarootdir}/locale
@@ -612,13 +612,13 @@ uninstall-am:
 	uninstall uninstall-am
 
 # 
-# INCLUDES                    = -I/usr/local/include  
+# INCLUDES                    = -I/usr/local/Cellar/check/0.9.8/include  
 # 
 # TESTS                       = check_micetrap
 # 
 # noinst_PROGRAMS             = $(TESTS)
 # check_micetrap_SOURCES      = check_micetrap.c
-# check_micetrap_LDADD        = -L/usr/local/lib -lcheck   check_hello.o
+# check_micetrap_LDADD        = -L/usr/local/Cellar/check/0.9.8/lib -lcheck   check_hello.o
 # CLEANFILES                  = check_micetrap.log
 # 
 # check_%.o : $(srcdir)/%.c

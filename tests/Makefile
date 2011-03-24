@@ -65,18 +65,18 @@ DIST_SOURCES = $(check_micetrap_SOURCES)
 ETAGS = etags
 CTAGS = ctags
 DISTFILES = $(DIST_COMMON) $(DIST_SOURCES) $(TEXINFOS) $(EXTRA_DIST)
-ACLOCAL = ${SHELL} /Users/txus/Code/micetrap/missing --run aclocal-1.10
-AMTAR = ${SHELL} /Users/txus/Code/micetrap/missing --run tar
+ACLOCAL = ${SHELL} /Users/txus/Code/micetrap-rewrite/missing --run aclocal-1.10
+AMTAR = ${SHELL} /Users/txus/Code/micetrap-rewrite/missing --run tar
 AR = ar
-AUTOCONF = ${SHELL} /Users/txus/Code/micetrap/missing --run autoconf
-AUTOHEADER = ${SHELL} /Users/txus/Code/micetrap/missing --run autoheader
-AUTOMAKE = ${SHELL} /Users/txus/Code/micetrap/missing --run automake-1.10
+AUTOCONF = ${SHELL} /Users/txus/Code/micetrap-rewrite/missing --run autoconf
+AUTOHEADER = ${SHELL} /Users/txus/Code/micetrap-rewrite/missing --run autoheader
+AUTOMAKE = ${SHELL} /Users/txus/Code/micetrap-rewrite/missing --run automake-1.10
 AWK = awk
 CC = gcc
 CCDEPMODE = depmode=gcc3
 CFLAGS = -g -O2
-CHECK_CFLAGS = -I/usr/local/include  
-CHECK_LIBS = -L/usr/local/lib -lcheck  
+CHECK_CFLAGS = -I/usr/local/Cellar/check/0.9.8/include  
+CHECK_LIBS = -L/usr/local/Cellar/check/0.9.8/lib -lcheck  
 CPP = gcc -E
 CPPFLAGS = 
 CYGPATH_W = echo
@@ -104,7 +104,7 @@ LIBTOOL = $(SHELL) $(top_builddir)/libtool
 LIPO = lipo
 LN_S = ln -s
 LTLIBOBJS = 
-MAKEINFO = ${SHELL} /Users/txus/Code/micetrap/missing --run makeinfo
+MAKEINFO = ${SHELL} /Users/txus/Code/micetrap-rewrite/missing --run makeinfo
 MKDIR_P = .././install-sh -c -d
 NM = /usr/bin/nm
 NMEDIT = nmedit
@@ -127,10 +127,10 @@ SET_MAKE =
 SHELL = /bin/sh
 STRIP = strip
 VERSION = 0.0.1
-abs_builddir = /Users/txus/Code/micetrap/tests
-abs_srcdir = /Users/txus/Code/micetrap/tests
-abs_top_builddir = /Users/txus/Code/micetrap
-abs_top_srcdir = /Users/txus/Code/micetrap
+abs_builddir = /Users/txus/Code/micetrap-rewrite/tests
+abs_srcdir = /Users/txus/Code/micetrap-rewrite/tests
+abs_top_builddir = /Users/txus/Code/micetrap-rewrite
+abs_top_srcdir = /Users/txus/Code/micetrap-rewrite
 ac_ct_CC = gcc
 ac_ct_DUMPBIN = 
 am__include = include
@@ -158,7 +158,7 @@ host_vendor = apple
 htmldir = ${docdir}
 includedir = ${prefix}/include
 infodir = ${datarootdir}/info
-install_sh = $(SHELL) /Users/txus/Code/micetrap/install-sh
+install_sh = $(SHELL) /Users/txus/Code/micetrap-rewrite/install-sh
 libdir = ${exec_prefix}/lib
 libexecdir = ${exec_prefix}/libexec
 localedir = ${datarootdir}/locale
@@ -526,7 +526,7 @@ uninstall-am:
 	mostlyclean-generic mostlyclean-libtool pdf pdf-am ps ps-am \
 	tags uninstall uninstall-am
 
-# check_micetrap_LDADD = $(top_builddir)/src/libmicetrap.la -L/usr/local/lib -lcheck  
+# check_micetrap_LDADD = $(top_builddir)/src/libmicetrap.la -L/usr/local/Cellar/check/0.9.8/lib -lcheck  
 # Tell versions [3.59,3.63) of GNU make to not export all variables.
 # Otherwise a system limit (for SysV at least) may be exceeded.
 .NOEXPORT:
