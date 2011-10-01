@@ -1,9 +1,0 @@
-autom4te.cache/*
-autom4te.cache/**/*
-*.o
-src/.deps/*
-src/micetrap
-config.log
-config.status
-.deps/*
-tests/check_micetrap
