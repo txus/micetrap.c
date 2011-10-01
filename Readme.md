@@ -29,20 +29,20 @@ which may give you advantage at tricking a smart attacker.
 
 ##Install
 
-  git clone git://github.com/txus/micetrap-rewrite.git
-  cd micetrap-rewrite
-  make
-  ln -s ./src/micetrap /usr/local/bin/micetrap
+    git clone git://github.com/txus/micetrap-rewrite.git
+    cd micetrap-rewrite
+    make
+    ln -s ./src/micetrap /usr/local/bin/micetrap
 
 ##Usage
 
 Just fire up the server with some fake service, such an ftp server:
 
-  micetrap ftp 8765
+    micetrap ftp 8765
 
 If everything is ok, you will see something like this:
 
-  Fake ftp service listening on port 8765...
+    Fake ftp service listening on port 8765...
 
 Most port scanners such as *nmap* have some kind of fingerprinting
 capabilities. This means that, in order to discover which services and
@@ -105,4 +105,5 @@ and be a superhero, you shall follow these steps:
 ## Copyright
 
 Copyright (c) 2011 Josep M. Bach. See LICENSE for details.
+
 
