@@ -11,14 +11,8 @@
 #include <arpa/inet.h>
 
 #include "utils.h"
+#include "service.h"
 #include "server.h"
-
-char *get_response()
-{
-  char *response;
-  response = "Hello people!";
-  return response;
-}
 
 /* TODO: Clean up file descriptors when exiting. */
 void goodbye()
@@ -26,8 +20,13 @@ void goodbye()
   printf("Goodbye!");
 }
 
-void Server_start(int port)
+void Server_start(Service *service, int port)
 {
+  // If no port is specified, get it from the service
+  if (port == 0) {
+    port = Service_random_port(service);
+  }
+
   // Trap SIGINT and call goodbye()
   signal(SIGINT, goodbye);
 
@@ -38,6 +37,11 @@ void Server_start(int port)
 
   char *response;
   int response_length = 0;
+
+  response = Service_random_response(service);
+  printf("Response is going to be %s.", response);
+  response_length = strlen(response);
+
 
   // Declare server and client addresses
   struct sockaddr_in server, client;
@@ -77,13 +81,9 @@ void Server_start(int port)
     printf("Incoming connection from %s\n", inet_ntoa(client.sin_addr));
 
     // Receive the probe
-    char *buf;
-    bzero(buf, 256);
+    char buf[256];
     received = recv(accept_fd, buf, 255, 0);
     if (received == 1) {
-      response = strdup(get_response());
-      response_length = strlen(response);
-
       send(accept_fd, response, response_length, 0);
     }
 
