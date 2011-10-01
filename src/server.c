@@ -35,13 +35,8 @@ void Server_start(Service *service, int port)
 
   int received = 0;
 
-  char *response;
-  int response_length = 0;
-
-  response = Service_random_response(service);
-  printf("Response is going to be %s.", response);
-  response_length = strlen(response);
-
+  char *response = Service_random_response(service);
+  int response_length = strlen(response);
 
   // Declare server and client addresses
   struct sockaddr_in server, client;
@@ -65,7 +60,7 @@ void Server_start(Service *service, int port)
     die("Could not bind the socket.");
   }
 
-  printf("Server ready and listening on port %d...", port);
+  printf("Fake %s server ready and listening on port %d...\n", service->name, port);
   listen(listen_fd, 5);
 
   while(1) {

@@ -32,8 +32,38 @@ Service *Service_build(const char *name)
     service->responses = responses;
     service->response_count = 1;
 
+  } else if (strcmp(name, "mysql") == 0) {
+    int ports[] = {3306};
+    service->ports = ports;
+
+    char *responses[] = {
+      ".\0\0\0\n4.0.13\0...\0"
+    };
+    service->responses = responses;
+    service->response_count = 1;
+
+  } else if (strcmp(name, "samba") == 0) {
+    int ports[] = {135, 139, 445};
+    service->ports = ports;
+
+    char *responses[] = {
+      "smbd: error while loading shared libraries: libattr.so.1: cannot open shared object file: No such file or directory\n",
+    };
+    service->responses = responses;
+    service->response_count = 1;
+
+  } else if (strcmp(name, "torrent") == 0) {
+    int ports[] = {9888};
+    service->ports = ports;
+
+    char *responses[] = {
+      "\x13 BitTorrent protocol\0\0\0\0\0\0\0\0"
+    };
+    service->responses = responses;
+    service->response_count = 1;
+
   } else {
-    die("Unrecognized service name.");
+    die("Unrecognized service name. Services available are: ftp, http, mysql, samba, torrent");
   }
 
   service->name = strdup(name);
@@ -59,5 +89,5 @@ char *Service_random_response(Service *service)
 
   int idx = rand() % service->response_count;
 
-  return *service->responses[idx];
+  return service->responses[idx];
 }

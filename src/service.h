@@ -12,5 +12,6 @@ typedef struct Service Service;
 
 Service *Service_build(const char *name);
 int Service_random_port(Service *service);
+char *Service_random_response(Service *service);
 
 #endif

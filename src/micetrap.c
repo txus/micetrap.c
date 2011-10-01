@@ -7,16 +7,16 @@
 
 int main(int argc, char *argv[])
 {
-  /* if (argc < 2) die("USAGE: micetrap <service> <port>"); */
+  if (argc < 2) die("USAGE: micetrap <service> <port>");
 
   int port = 0;
   if (argc == 3) {
     port = atoi(argv[2]);
   }
 
-  /* Service *service = Service_build(argv[1]); */
-  Service *service = Service_build("ftp");
+  Service *service = Service_build(argv[1]);
+  /* Service *service = Service_build("ftp"); */
 
-  Server_start(service, 9999);
+  Server_start(service, port);
   return 0;
 }
