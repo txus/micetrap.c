@@ -29,8 +29,8 @@ which may give you advantage at tricking a smart attacker.
 
 ##Install
 
-    git clone git://github.com/txus/micetrap-rewrite.git
-    cd micetrap-rewrite
+    git clone git://github.com/txus/micetrap.c.git
+    cd micetrap.c
     make
     ln -s ./src/micetrap /usr/local/bin/micetrap
 
@@ -105,5 +105,6 @@ and be a superhero, you shall follow these steps:
 ## Copyright
 
 Copyright (c) 2011 Josep M. Bach. See LICENSE for details.
+
 
 
