@@ -1,31 +1,43 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include <errno.h>
-
 #include <string.h>
 #include <unistd.h>
+
+#include <signal.h>
 
 #include <sys/types.h>
 #include <sys/socket.h>
 #include <netinet/in.h>
 #include <arpa/inet.h>
+
+#include "utils.h"
 #include "server.h"
 
-void die(const char *message)
+char *get_response()
 {
-  if (errno) {
-    perror(message);
-  } else {
-    printf("ERROR: %s\n", message);
-  }
+  char *response;
+  response = "Hello people!";
+  return response;
+}
 
-  exit(1);
+/* TODO: Clean up file descriptors when exiting. */
+void goodbye()
+{
+  printf("Goodbye!");
 }
 
 void Server_start(int port)
 {
+  // Trap SIGINT and call goodbye()
+  signal(SIGINT, goodbye);
+
   // Declare file descriptors
   int listen_fd, accept_fd;
+
+  int received = 0;
+
+  char *response;
+  int response_length = 0;
 
   // Declare server and client addresses
   struct sockaddr_in server, client;
@@ -64,15 +76,18 @@ void Server_start(int port)
 
     printf("Incoming connection from %s\n", inet_ntoa(client.sin_addr));
 
-    char buf[255];
-    int n;
+    // Receive the probe
+    char *buf;
     bzero(buf, 256);
-    n = recv(accept_fd, buf, 255, 0);
-    printf("Message received: %s", buf);
+    received = recv(accept_fd, buf, 255, 0);
+    if (received == 1) {
+      response = strdup(get_response());
+      response_length = strlen(response);
 
-    send(accept_fd, "Welcome to my server.\n", 22, 0);
+      send(accept_fd, response, response_length, 0);
+    }
 
-    // Close file descriptor
+    // Close the connection
     close(accept_fd);
   }
 }
