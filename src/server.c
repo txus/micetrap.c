@@ -11,6 +11,7 @@
 #include <arpa/inet.h>
 
 #include "utils.h"
+#include "log.h" // Always require after utils.h
 #include "service.h"
 #include "server.h"
 
@@ -60,7 +61,7 @@ void Server_start(Service *service, int port)
     die("Could not bind the socket.");
   }
 
-  printf("Fake %s server ready and listening on port %d...\n", service->name, port);
+  log("Fake %s server ready and listening on port %d...", service->name, port);
   listen(listen_fd, 5);
 
   while(1) {
@@ -73,13 +74,15 @@ void Server_start(Service *service, int port)
       die("Could not accept incoming connection.");
     }
 
-    printf("Incoming connection from %s\n", inet_ntoa(client.sin_addr));
+    log("Incoming connection from %s", inet_ntoa(client.sin_addr));
 
     // Receive the probe
     char buf[256];
     received = recv(accept_fd, buf, 255, 0);
+    log("Message received: %s", buf);
     if (received == 1) {
       send(accept_fd, response, response_length, 0);
+      log("Sent a fake probe: %s", response);
     }
 
     // Close the connection

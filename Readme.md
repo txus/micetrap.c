@@ -42,7 +42,7 @@ Just fire up the server with some fake service, such an ftp server:
 
 If everything is ok, you will see something like this:
 
-    Fake ftp service listening on port 8765...
+    [Sun Oct  2 16:16:32 2011] Fake ftp server ready and listening on port 8765...
 
 Most port scanners such as *nmap* have some kind of fingerprinting
 capabilities. This means that, in order to discover which services and
@@ -61,7 +61,11 @@ ftp service with nmap fingerprinting:
 We are scanning localhost, port 8765, and -A means service version detection
 and OS guessing. After a while, in our micetrap server terminal we see:
 
-    Incoming connection from 127.0.0.1
+    [Sun Oct  2 16:16:40 2011] Incoming connection from 127.0.0.1
+    [Sun Oct  2 16:16:46 2011] Message received:
+
+    [Sun Oct  2 16:16:46 2011] Sent a fake probe: 220-----------------------------
+    220-This is the "Banner" message for the Mac OS X Server's FTP server process.
 
 And in the nmap terminal:
 
@@ -105,6 +109,3 @@ and be a superhero, you shall follow these steps:
 ## Copyright
 
 Copyright (c) 2011 Josep M. Bach. See LICENSE for details.
-
-
-
